@@ -20,7 +20,9 @@ pipeline {
         }
         stage('Test-Build') {
             steps {
-                echo 'Test-Build'
+                dir('src') {
+                  sh "dotnet test --configuration Release"
+                }
             }
         }
         stage('Publish') {
