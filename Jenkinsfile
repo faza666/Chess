@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'dotnet:6.0' } }
+    agent { docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } }
 
     stages {
         stage('Hello') {
