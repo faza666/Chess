@@ -27,7 +27,9 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                echo 'Publish'
+                dir('src') {
+                  sh "dotnet publish -c Release -o WebChess"
+                }
             }
         }
         stage('Test-Publish') {
