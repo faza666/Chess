@@ -1,10 +1,10 @@
 pipeline {
-    agent { docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } }
+    agent any
 
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                docker pull mcr.microsoft.com/dotnet/sdk:6.0
             }
         }
         stage('Build') {
