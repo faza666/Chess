@@ -1,6 +1,10 @@
 pipeline {
-    agent { docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } }
-
+    agent { 
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } 
+    }
+    environment {
+       HOME = '/tmp'
+    } 
     stages {
         stage('Hello') {
             steps {
