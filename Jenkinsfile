@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                sh "dotnet --version"
+                echo 'Hello World'
             }
         }
         stage('Build') {
             steps {
-                echo 'Build'
+                dir('src') {
+                  sh "dotnet build --configuration Release"
+                }
             }
         }
         stage('Test-Build') {
