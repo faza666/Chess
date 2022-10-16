@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-    
+    agent { 
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } 
+    }
+    environment {
+       HOME = '/tmp'
+    } 
     stages {
         stage('Build') {
             steps {
@@ -18,8 +22,8 @@ pipeline {
         }
         stage('Create initial migration') {
             steps {
-                dir('src/Data/Chess.Data') {
-                  sh "/home/chess/.dotnet/tools/dotnet-ef migrations add InitialCreate"
+                dir('src') {
+                  sh "dotnet publish -c Release -o WebChess"
                 }
             }
         }
