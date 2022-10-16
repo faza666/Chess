@@ -28,7 +28,7 @@ pipeline {
         stage('Publish') {
             steps {
                 dir('src') {
-                  sh "dotnet publish -c Release -o /WebChess"
+                  sh "dotnet publish -c Release -o /home/chess/jenkins/WebChess/"
                 }
             }
         }
