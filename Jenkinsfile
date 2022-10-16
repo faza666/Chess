@@ -13,9 +13,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('src') {
-                  sh "dotnet build --configuration Release"
-                }
+                dotnetBuild configuration: 'Release'
+                sdk: '.Net-SDK-6.0'
+                workDirectory: 'src'
             }
         }
         stage('Test-Build') {
