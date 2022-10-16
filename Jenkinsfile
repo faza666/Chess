@@ -2,28 +2,21 @@ pipeline {
     agent any
     
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
         stage('Build') {
             steps {
-                dotnetBuild configuration: 'Release', sdk: '.Net-SDK-6.0', workDirectory: 'src'
+                dotnetBuild configuration: 'Release',
+                    sdk: '.Net-SDK-6.0',
+                    workDirectory: 'src'
             }
         }
         stage('Test-Build') {
             steps {
-                dir('src') {
-                  sh "dotnet test --configuration Release"
-                }
+                dotnetTest configuration: 'Release', sdk: '.Net-SDK-6.0', workDirectory: 'src'
             }
         }
         stage('Publish') {
             steps {
-                dir('src') {
-                  sh "dotnet publish -c Release -o ../WebChess/"
-                }
+                dotnetPublish configuration: 'Release', outputDirectory: '/home/chess/jenkins/WebChess', sdk: '.Net-SDK-6.0', selfContained: true, verbosity: 'n', workDirectory: 'src'
             }
         }
         stage('Test-Publish') {
