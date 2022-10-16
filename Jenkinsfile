@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('src') {
-                  sh "dotnet build --configuration Release"
+                  dotnet build --configuration Release
                 }
             }
         }
