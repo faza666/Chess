@@ -1,10 +1,6 @@
 pipeline {
-    agent { 
-        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' } 
-    }
-    environment {
-       HOME = '/tmp'
-    } 
+    agent any
+ 
     stages {
         stage('Build') {
             steps {
@@ -20,20 +16,6 @@ pipeline {
                 }
             }
         }
-        stage('Create initial migration') {
-            steps {
-                dir('src') {
-                  sh "dotnet publish -c Release -o WebChess"
-                }
-            }
-        }
-        stage('Update Database') {
-            steps {
-                dir('src/Data/Chess.Data') {
-                  sh "/home/chess/.dotnet/tools/dotnet-ef database update"
-                }
-            }
-        }
         stage('Publish') {
             steps {
                 dir('src') {
@@ -43,17 +25,32 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy'
-            }
-        }
-        stage('Run') {
-            steps {
-                echo 'Run'
-            }
-        }
-        stage('Test-Run') {
-            steps {
-                echo 'Test-Run'
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'Deploy_server_to_TEST',
+                            transfers: [
+                                sshTransfer(
+                                    cleanRemote: false,
+                                    excludes: '',
+                                    execCommand: 'sudo systemctl restart chess.service',
+                                    execTimeout: 120000,
+                                    flatten: false,
+                                    makeEmptyDirs: false,
+                                    noDefaultExcludes: false,
+                                    patternSeparator: '[, ]+',
+                                    remoteDirectory: 'WebChess',
+                                    remoteDirectorySDF: false,
+                                    removePrefix: '',
+                                    sourceFiles: 'src/WebChess/*'
+                                )
+                            ],
+                            usePromotionTimestamp: false,
+                            useWorkspaceInPromotion: false,
+                            verbose: false
+                        )
+                    ]
+                )
             }
         }
     }
