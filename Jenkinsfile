@@ -16,16 +16,25 @@ pipeline {
                 }
             }
         }
-        stage('Publish') {
+        stage('Create initial migration') {
             steps {
-                dir('src') {
-                  sh "dotnet publish -o WebChess"
+                dir('src/Data/Chess.Data') {
+                  sh "/home/chess/.dotnet/tools/dotnet-ef migrations add InitialCreate"
                 }
             }
         }
-        stage('Test-Publish') {
+        stage('Update Database') {
             steps {
-                echo 'Test-Publish'
+                dir('src/Data/Chess.Data') {
+                  sh "/home/chess/.dotnet/tools/dotnet-ef database update"
+                }
+            }
+        }
+        stage('Publish') {
+            steps {
+                dir('src') {
+                  sh "dotnet publish -c Release -o WebChess"
+                }
             }
         }
         stage('Deploy') {
