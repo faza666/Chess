@@ -4,17 +4,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dotnetBuild configuration: 'Release', sdk: '.Net-SDK-6.0', workDirectory: 'src'
+                dir('src') {
+                  sh "dotnet build --configuration Release"
+                }
             }
         }
         stage('Test-Build') {
             steps {
-                dotnetTest configuration: 'Release', sdk: '.Net-SDK-6.0', workDirectory: 'src'
+                dir('src') {
+                  sh "dotnet test --configuration Release"
+                }
             }
         }
         stage('Publish') {
             steps {
-                dotnetPublish configuration: 'Release', outputDirectory: '/home/chess/jenkins/WebChess', sdk: '.Net-SDK-6.0', selfContained: true, verbosity: 'n', workDirectory: 'src'
+                dir('src') {
+                  sh "dotnet publish -o WebChess"
+                }
             }
         }
         stage('Test-Publish') {
