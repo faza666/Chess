@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chess-test-webapp-4",
+  "private_key_id": "3ad5e06300c742ae7066b4e8edcf13d36e331bee",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCndowOhK5rv1W+\n7c4qWDdK952yd2Gjt5Y4/GiFnuXk+gNhO/l1yRCEkFgwmXdMTNjltcouab41th75\n4JfKWp4NIFh/DqZe1rcZ56gbHitN4ufvTH+vSML2PhAVJNuNiB9CeTbOkeVfD+h+\nSUMh5LJbfMtYTyBXtY4ve8uhUYebG/TsrBv8AC0PtYh+Hn5YevsDpqc+QFDCg3lO\nN8zCrvRrCiA2HjC1vXviKbcIw9fbQdpOocPL1qkLjIn+Was3HkJ6oeBDVEWpcn5N\na5yDtOJepKbou+13q3eNXKtJquII4OP0aDIyphtni0yfAGnYF3mLaJDpKk4BO+V6\n8NDhw/C/AgMBAAECggEAE7ud3FYZIXwt0+48tXOorE5KSE3V9Q88heGERX6IU3d8\nb3g8OHtlVWGW6r8ithx2EHdf6CEwty6LLuGesUsFRcGye+JTi2hcshJAllVzP93F\ne8a1Ywe9ZXvBtGQf9Oj92fzjjurVLuL2f+8NGJDUzYACjBji1EMCCqlZQNyVEJtF\nZtGlDDFkcuBSfU2TH9gKFXDGMce8CT97n+S1eCYJuttbhiXjP30k+AXGYvUNTLqR\nGoHWsVC2FGr0kZA/lINrh+myv9IrIsJXpKvKKGQa7j2PZyD1um1v8C8ZSGkzUJ4U\nh8ZwjGv21R/3a2/iPE9UlnxGYFONU3WLL42GR2zgTQKBgQDXegcg9EW4JP+nfMqC\nk9hSoMZLI4AQdFBytCf3k3yOPD2REVGfnLRNOJi0ago59uBrrRsxkvxj2l8DPJdN\nLg1NRqarGEdjL9hleGlkR7+m4OP3V0Ms6IdQ/G0WJKY5ghohUM5EU7XC+0+x2KU+\np8KS/cRFfBhaFOBoST6hlo6tzQKBgQDG9PBEthDKd8EWicEZRjI/t1SYaz3DQ8Go\nS2LYOOjX9OqdDMjwuQVSW/iXDrlX0g2aBY6vr+4ha0nWO6yMyN8ZU0ziNb5v2FhU\ns0foCeSUmm15j5HzajCvjdXLB4gsSWcicnDlPWplFUVQ50wL8Eir80zqhoxWT8+1\nLluFGprsuwKBgQDXHkiHqdcA5E8nUvqKKjfJJiFRWnu78aNvIFTWYjPzfEiqz3OB\nudx3S42IcGUNQV8DoKqJb4jx100L2i3jK5q0D1jNb0u1xkpv4yq0pry7ScHNaRzz\ndKHDRH9Tn/sjZrPXluiWZkwMAQGrN/Kg/rLONPMBu8ZECJuRAa65e6mt8QKBgQCL\n2ZKmieAFoeYNJKmiTXB2zzRcq01P22neFZeWa3JoktTzrg/0/elauiFkdUodDB7Z\nfDyPDDh0L0lImMuybmQ8Fgy+GY8SaV21tAvAdGvDdUWspBmwo50zWZzFSTcUAkjH\nsu/eg6ws/6Wot90Bq1Y54BzZ4df1t8ZGEh7s0gXCjwKBgFPo62IMYRw5D0YArVdP\nd8SfkPax2+7myw/6zXx0/DN5fGlFX4ftquY5GxUwhAYnJYm+qFJwNu5jKAtkivSE\nrKallist0N6k2oKOooSWBkIDJHyS1TYik/vd6foaCdSWqCEwN5DtDFCY3pWRcIPO\nKSRGEI08TqmqADWHBwMxQxvw\n-----END PRIVATE KEY-----\n",
+  "client_email": "chess-test-webapp-4@appspot.gserviceaccount.com",
+  "client_id": "116071596191878444821",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chess-test-webapp-4%40appspot.gserviceaccount.com"
+}

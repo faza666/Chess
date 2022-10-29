@@ -1,0 +1,8 @@
+steps:
+  - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
+    args:
+      - 'dotnet'
+      - 'restore'
+      - 'Web/Chess.Web/Chess.Web.csproj'
+    id: 'BUILD'
+    dir: 'src'

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chess-test-webapp-5",
+  "private_key_id": "46a9778ef76639994d84cb71440d1ebe41f45583",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDU0V+e8lBm+5VR\nqt5rVytXjIcn9Tu06KZ4pSysgejQfZCVW1zgRaJ5pSnbBU73GpwX/yyRbfCuTg0V\nxv3omJz21HV4oL42E93H4CELwePsMAIwkuZCV4amSfug9pH/LeX3oHgiMbn+XEum\nOIsQc0FTCmdbHhR6NKuFsT4EcVc79IUo6E4vBpkpy6cDM7hECCTUpA87Rd2rmVrz\nWNIAg9zBJ96IG0PUDTVePHyyEV5sVNx1+e3TSiXWvZO+mRgZwPhmIkD2xZXOyHL9\nshwXQY1xjKcXFci1JPn+roZQfDIel3S5vrwVaTLnvLsmce3v14YeTa1D8nn5mKZj\nGsXlXet3AgMBAAECggEAG46/yWQ/7GXthaAQ9xNYOxj+Xg/lBbMOmMFtZyqB9uVw\n4HZD241eJvmv0Xr+066awdy6wluFy/xdY2bbdXq1m0doWBDF21jNN4GapdwbOHgA\nVevfwdLK+SN2taGCxulZmwF+LOda2fN3nvQ5cGLhoEV7nBKUEj2vFuZxompOzSYg\ndJj1eD7J7uhjSX1ndgXAyacnxL2tt24+ecUAnXV+YZot4v0q+2rNvQeDDGScAtVz\nTSDT57/qhgLU1LX1QjS2JXYP0br81jUaVGmh4U3kaXnp3FPDbckL1oL4svNUdu8P\nVfG7/gXN20mPwR+rtAC4qJirvBAgeq5T/niVnAB/OQKBgQDz7eJ8R93be/tvvLcd\nHF2UGn434dvC+KWL1rHnFR33qNTLR2rwVkn/Ajjd8F1JfaV7dpTUfLPIrBuBTVAz\nII6TLvFaTNIedjgC7auNcKYAf0w8RlxRdUq7bWzd9CKrtZuM9IomnTuBOHcgjK+R\nNZTjrfCLSNeFbt7paozo2jUmHQKBgQDfWV4QXvOAmgZT/0ipVIl3/6649HmgRX2c\nXz6U2gTgFaSW6a2KquhaK/OwqHmJhW53ooy3V1Y7hf7jU6XY6X3CiM3ltwI9lPqQ\n8C5tlKAaqnJFkBwgZQNP2IjnXC2KUuBivMwHp9je2cX/9VSxgRpNc4gHcVSi/Q0O\ni9aIAfSTowKBgQDvvApuDsuy3OU+6gAlsi0eU/NcxLORqYI6L2VlMVHkh5+rsaMe\nVhAfenWdWpC0m7I5509ajry7KrtVl0CNHyBA80/tabbQjWt7JU8HkYD02Cd6zcQJ\novcxwdfPRBOXIsOgAu6MCNfkpjQeX2Zlln2gTuEsYwi+cTrPuRKH/31g2QKBgGtO\npYnaBMXRup6atU9dpVp5BnooQ1NEb9A0Vn3vrY33+AblqJJKAK5qFX/XweTXrbZe\n65qepHierVKM+s6Xh+tyDPKEFdh+flAqhTPyx2VoZNSVI15RCeFP2J7Hw72EifgG\nW0SGWQTgvmd2eEV8EKYLjtx8j7xrNd26Q80+m0JfAoGAQ/I36KQgq1EcmbnmWuDd\nTp3lGjy3tCYCmc71kkj47+zj/59xKwZ/oh0Tv54Tcl+foweJ6824kAhVjSqFiyZv\n2Yy8A/NjzIlB2cB0gI99CmhciogXTWfY+PJuIygv0hnYTzvhHbg3BW1yafpr/0BJ\nxc4TcB7yTJJp7SAxxg3l7eQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "chess-test-webapp-5-service-ac@chess-test-webapp-5.iam.gserviceaccount.com",
+  "client_id": "103557347927988616604",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chess-test-webapp-5-service-ac%40chess-test-webapp-5.iam.gserviceaccount.com"
+}
