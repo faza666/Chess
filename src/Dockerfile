@@ -4,7 +4,7 @@ EXPOSE 8080
 
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-ENV CONNECTION_STRING="Server=10.37.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=GUb!RqUl%!Ej"
+ENV CONNECTION_STRING="Server=10.3.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=GUb!RqUl%!Ej"
 
 # You can also specify the connection string as env variable
 # ENV CONNECTION_STRING= 

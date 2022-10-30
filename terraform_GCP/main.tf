@@ -43,7 +43,7 @@ resource "google_sql_user" "users" {
   name     = "chess"
   instance = google_sql_database_instance.db_instance.name
   project  = var.project_id
-  password = "GUb!RqUl%!Ej"
+  password = data.google_secret_manager_secret_version.db_password.secret_data
   /*password = random_string.sql_instance_user_password.result*/
 }
 
