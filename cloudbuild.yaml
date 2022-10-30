@@ -26,4 +26,4 @@ steps:
       - '-c'
       - 'Release'
     id: 'TEST'
-    dir: '/app/build'
+    dir: 'src'
