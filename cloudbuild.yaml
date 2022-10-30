@@ -13,8 +13,10 @@ steps:
     args:
       - 'build'
       - 'Chess.Web.csproj'
-      - '--configuration Release'
-      - '-o /app/build'
+      - '-c'
+      - 'Release'
+      - '-o'
+      - '/app/build'
     id: 'BUILD'
     dir: 'Web/Chess.Web'
 
@@ -22,6 +24,7 @@ steps:
     entrypoint: 'dotnet'
     args:
       - 'build'
-      - '-c Release'
+      - '-c'
+      - 'Release'
     id: 'TEST'
     dir: '/app/build'
