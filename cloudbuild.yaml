@@ -16,7 +16,7 @@ steps:
       - '--configuration Release'
       - '-o /app/build'
     id: 'BUILD'
-    dir: '/src/Web/Chess.Web'
+    dir: 'Web/Chess.Web'
 
   - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
     entrypoint: 'dotnet'
