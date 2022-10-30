@@ -13,7 +13,7 @@ steps:
     args:
       - 'build'
       - 'Chess.Web.csproj'
-      - '-c Release'
+      - '--configuration Release'
       - '-o /app/build'
     id: 'BUILD'
     dir: '/src/Web/Chess.Web'
@@ -21,7 +21,7 @@ steps:
   - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
     entrypoint: 'dotnet'
     args:
-      - 'test'
+      - 'build'
       - '-c Release'
     id: 'TEST'
     dir: '/app/build'
