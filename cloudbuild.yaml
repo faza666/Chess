@@ -12,13 +12,12 @@ steps:
     entrypoint: 'dotnet'
     args:
       - 'build'
-      - 'Chess.Web.csproj'
       - '-c'
       - 'Release'
       - '-o'
       - '/app/build'
     id: 'BUILD'
-    dir: 'Web/Chess.Web'
+    dir: 'src'
 
   - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
     entrypoint: 'dotnet'
