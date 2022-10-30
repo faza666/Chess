@@ -82,3 +82,12 @@ resource "google_service_networking_connection" "private_vpc_connection" {
   reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
 }
 
+
+data "google_secret_manager_secret_version" "db_password" {
+  secret = "chess-db-user-password"
+}
+
+output "secret_id" {
+  value = data.google_secret_manager_secret_version.db_password.secret_data
+  sensitive = true
+}

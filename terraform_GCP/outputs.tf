@@ -15,6 +15,6 @@ output "mssql_connection_name" {
 }
 
 output "db_private_ip_address" {
-  value       = google_sql_database_instance.db_instance.first_ip_address
+  value       = google_sql_database_instance.db_instance.private_ip_address
   description = "private ip address"
 }
