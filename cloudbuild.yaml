@@ -1,8 +1,27 @@
 steps:
+
   - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
     entrypoint: 'dotnet'
     args:
       - 'restore'
       - 'Web/Chess.Web/Chess.Web.csproj'
-    id: 'BUILD'
+    id: 'RESTORE'
     dir: 'src'
+
+  - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
+    entrypoint: 'dotnet'
+    args:
+      - 'build'
+      - 'Chess.Web.csproj'
+      - '-c Release'
+      - '-o /app/build'
+    id: 'BUILD'
+    dir: '/src/Web/Chess.Web'
+
+  - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
+    entrypoint: 'dotnet'
+    args:
+      - 'test'
+      - '-c Release'
+    id: 'TEST'
+    dir: '/app/build'
