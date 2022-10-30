@@ -14,8 +14,6 @@ steps:
       - 'build'
       - '-c'
       - 'Release'
-      - '-o'
-      - '/app/build'
     id: 'BUILD'
     dir: 'src'
 
@@ -26,4 +24,15 @@ steps:
       - '-c'
       - 'Release'
     id: 'TEST'
+    dir: 'src'
+
+  - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
+    entrypoint: 'dotnet'
+    args:
+      - 'publish'
+      - '-c'
+      - 'Release'
+      - '-o'
+      - '/app/build'
+    id: 'PUBLISH'
     dir: 'src'
