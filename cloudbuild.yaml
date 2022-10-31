@@ -8,14 +8,14 @@ steps:
     id: 'RESTORE'
     dir: 'src'
 
-  - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
-    entrypoint: 'dotnet'
-    args:
-      - 'build'
-      - '-c'
-      - 'Release'
-    id: 'BUILD'
-    dir: 'src'
+  # - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
+  #   entrypoint: 'dotnet'
+  #   args:
+  #     - 'build'
+  #     - '-c'
+  #     - 'Release'
+  #   id: 'BUILD'
+  #   dir: 'src'
 
   - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
     entrypoint: 'dotnet'
@@ -33,6 +33,6 @@ steps:
       - '-c'
       - 'Release'
       - '-o'
-      - '/app/build'
+      - '/app/publish'
     id: 'PUBLISH'
     dir: 'src'
