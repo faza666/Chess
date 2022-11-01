@@ -36,6 +36,14 @@ steps:
       - '/app/publish'
     id: 'PUBLISH'
     dir: 'src'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args: 
+      - '-c'
+      - 'cp -t /app/publish/ app.yaml Dockerfile'
+    id: 'PREPARE TO DEPLOY'
+    dir: 'webapp'
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
