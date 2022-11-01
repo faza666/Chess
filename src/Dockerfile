@@ -13,6 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Web/Chess.Web/Chess.Web.csproj", "Web/Chess.Web/"]
 COPY . .
+RUN dotnet restore "Web/Chess.Web/Chess.Web.csproj"
+WORKDIR "/src/Web/Chess.Web"
+RUN dotnet build "Chess.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
