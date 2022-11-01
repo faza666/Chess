@@ -33,7 +33,7 @@ steps:
       - '-c'
       - 'Release'
       - '-o'
-      - '/app/publish'
+      - 'webapp'
     id: 'PUBLISH'
     dir: 'src'
 
@@ -41,7 +41,7 @@ steps:
     entrypoint: 'bash'
     args: 
       - '-c'
-      - 'cp -t /app/publish/ app.yaml Dockerfile'
+      - 'cp -t webapp/ app.yaml Dockerfile'
     id: 'PREPARE TO DEPLOY'
     dir: 'webapp'
   
