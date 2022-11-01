@@ -14,6 +14,8 @@ WORKDIR /src
 COPY ["Web/Chess.Web/Chess.Web.csproj", "Web/Chess.Web/"]
 COPY . .
 
+FROM build AS publish
+RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
