@@ -42,4 +42,6 @@ steps:
     args: 
       - '-c'
       - 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy'
+    id: 'DEPLOY'
+    dir: 'src'
     timeout: '1600s'
