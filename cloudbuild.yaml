@@ -42,6 +42,12 @@ steps:
     args: 
       - '-c'
       - 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy'
+    secretEnv: ['DB_CHESS_USER_PASSWORD']
     id: 'DEPLOY'
     dir: 'src'
     timeout: '1600s'
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/304580019825/secrets/chess-db-user-password/versions/1
+    env: 'DB_CHESS_USER_PASSWORD'

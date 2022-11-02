@@ -3,3 +3,6 @@ env: flex
 
 manual_scaling:
   instances: 1
+
+env_variables:
+  DB_USER_PASSWORD: DB_CHESS_USER_PASSWORD

@@ -5,7 +5,7 @@ EXPOSE 8080
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
-RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --project="chess-test-webapp-5" --secret="chess-db-user-password")
+ENV SECRET_PASSWORD=$DB_CHESS_USER_PASSWORD
 RUN echo $SECRET_PASSWORD
 
 # ARG PASSWD_CHESS_DB_USER
