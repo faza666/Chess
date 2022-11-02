@@ -37,12 +37,6 @@ steps:
   #   id: 'PUBLISH'
   #   dir: 'src'
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args: 
-      - '-c'
-      - 'export $DB_CHESS_USER_PASSWORD'
-    secretEnv: ['DB_CHESS_USER_PASSWORD']
   
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
@@ -52,6 +46,7 @@ steps:
     id: 'DEPLOY'
     dir: 'src'
     timeout: '1600s'
+    secretEnv: ['DB_CHESS_USER_PASSWORD']
 
 availableSecrets:
   secretManager:
