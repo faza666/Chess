@@ -49,5 +49,5 @@ steps:
 
 availableSecrets:
   secretManager:
-  - versionName: projects/304580019825/secrets/chess-db-user-password/versions/1
+  - versionName: 'projects/304580019825/secrets/chess-db-user-password/versions/1'
     env: 'DB_CHESS_USER_PASSWORD'
