@@ -1,13 +1,14 @@
+
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --secret="chess-db-user-password")
+RUN echo $SECRET_PASSWORD
+
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-
-FROM google/cloud-sdk:latest
-RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --secret="chess-db-user-password")
-RUN echo $SECRET_PASSWORD
 
 # ARG PASSWD_CHESS_DB_USER
 # ENV DB_PASSWORD = $PASSWD_CHESS_DB_USER
