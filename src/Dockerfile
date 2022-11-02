@@ -7,7 +7,7 @@ ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
 FROM gcr.io/cloud-builders/gcloud:latest
 RUN export SECRET_PASSWORD='gcloud secrets versions access 1 --secret="chess-db-user-password"'
-
+RUN echo $SECRET_PASSWORD
 
 # ARG PASSWD_CHESS_DB_USER
 # ENV DB_PASSWORD = $PASSWD_CHESS_DB_USER
