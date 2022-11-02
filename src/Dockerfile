@@ -5,7 +5,7 @@ EXPOSE 8080
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
-ENV SECRET_PASSWORD=$DB_CHESS_USER_PASSWORD
+# ENV SECRET_PASSWORD=${DB_CHESS_USER_PASSWORD}
 RUN echo ${SECRET_PASSWORD}
 
 # ARG PASSWD_CHESS_DB_USER
@@ -29,4 +29,4 @@ RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Chess.Web.dll"]
+ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", "SECRET_PASSWORD=${DB_CHESS_USER_PASSWORD}"]
