@@ -6,7 +6,7 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
 FROM google/cloud-sdk:latest
-RUN export SECRET_PASSWORD='gcloud secrets versions access 1 --secret="chess-db-user-password"'
+RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --secret="chess-db-user-password")
 RUN echo $SECRET_PASSWORD
 
 # ARG PASSWD_CHESS_DB_USER
