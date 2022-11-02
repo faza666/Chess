@@ -9,7 +9,7 @@ ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 RUN echo ${SECRET_PASSWORD}
 
 # ARG PASSWD_CHESS_DB_USER
-# ENV DB_PASSWORD = $PASSWD_CHESS_DB_USER
+ENV SECRET_PASSWORD = $DB_CHESS_USER_PASSWORD
 ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=${SECRET_PASSWORD}"
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
