@@ -1,6 +1,6 @@
 
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:latest
-RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --secret="chess-db-user-password")
+RUN export SECRET_PASSWORD=$(gcloud secrets versions access 1 --project="chess-test-webapp-5" --secret="chess-db-user-password")
 RUN echo $SECRET_PASSWORD
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
