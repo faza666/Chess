@@ -8,6 +8,7 @@ ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 ARG PASSWD_CHESS_DB_USER
 ENV DB_PASSWORD = $PASSWD_CHESS_DB_USER
 ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=${DB_PASSWORD}"
+ENV SECRET_PASSWORD='gcloud secrets versions access 1 --secret="chess-db-user-password"'
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
@@ -26,4 +27,4 @@ RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", 'DB_PASSWORD=gcloud secrets versions access 1 --secret="chess-db-user-password"']
+ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", "DB_PASSWORD=${SECRET_PASSWORD}"]
