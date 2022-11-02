@@ -2,9 +2,11 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
+ARG DB_PASSWORD
+
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=GUb!RqUl%!Ej"
+ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=${DB_PASSWORD}"
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
@@ -23,4 +25,4 @@ RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Chess.Web.dll"]
+ENTRYPOINT ["dotnet", "Chess.Web.dll", "DB_PASSWORD=GUb!RqUl%!Ej"]
