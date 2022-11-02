@@ -2,10 +2,11 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
-ARG DB_PASSWORD
-
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+
+ARG PASSWD_CHESS_DB_USER
+ENV DB_PASSWORD = $PASSWD_CHESS_DB_USER
 ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=${DB_PASSWORD}"
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
