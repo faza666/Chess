@@ -56,26 +56,26 @@ steps:
     timeout: '1600s'
     secretEnv: ['DB_CHESS_USER_PASSWORD']
 
-# Test Image Docker Artifact 
-  - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
-    id  : TEST
-    args:
-      - test
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+# # Test Image Docker Artifact 
+#   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
+#     id  : TEST
+#     args:
+#       - test
+#       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
 
-# Docker Push Image to Artifact Registry
-  - name: gcr.io/cloud-builders/docker
-    id  : PUSH
-    args: ['push', '$_SERVICE_IMAGE:$COMMIT_SHA']
+# # Docker Push Image to Artifact Registry
+#   - name: gcr.io/cloud-builders/docker
+#     id  : PUSH
+#     args: ['push', '$_SERVICE_IMAGE:$COMMIT_SHA']
 
-# Docker Deploy Image from Artifact Registry
-  - name: gcr.io/cloud-builders/gcloud
-    id  : DEPLOY
-    args:
-      - app
-      - deploy
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
-    dir: src
+# # Docker Deploy Image from Artifact Registry
+#   - name: gcr.io/cloud-builders/gcloud
+#     id  : DEPLOY
+#     args:
+#       - app
+#       - deploy
+#       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+#     dir: src
 
 availableSecrets:
   secretManager:
