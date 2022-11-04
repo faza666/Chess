@@ -41,6 +41,8 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args: 
      - 'build'
+     - '-c'
+     - 'Release'
      - '-t'
      - '$_SERVICE_IMAGE'
      - '--build-arg=DB_CHESS_USER_PASSWORD=$$DB_CHESS_USER_PASSWORD'
