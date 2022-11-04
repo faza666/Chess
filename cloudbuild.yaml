@@ -41,8 +41,6 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args: 
      - 'build'
-     - '-c'
-     - 'Release'
      - '-t'
      - '$_SERVICE_IMAGE'
      - '--build-arg=DB_CHESS_USER_PASSWORD=$$DB_CHESS_USER_PASSWORD'
@@ -60,9 +58,9 @@ steps:
     args: ['push', '$_SERVICE_IMAGE']
   
 # Test Docker Image
-  - name: $_SERVICE_IMAGE
+  - name: mcr.microsoft.com/dotnet/sdk:6.0
     id  : TEST
-    args: ['test']
+    args: ['$_SERVICE_IMAGE', 'test']
 
 availableSecrets:
   secretManager:
