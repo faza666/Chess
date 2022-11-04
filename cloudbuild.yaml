@@ -52,6 +52,10 @@ steps:
     timeout: '1600s'
     secretEnv: ['DB_CHESS_USER_PASSWORD']
   
+# Test Docker Image
+  - name: gcr.io/cloud-builders/docker
+    id  : TEST
+    args: ['test']
 
 # Docker Push Image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
@@ -66,6 +70,5 @@ availableSecrets:
 substitutions:
     _SERVICE_IMAGE    : ${_SERVICE_REGION}-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
     _SERVICE_REGION   : europe-cebtral2
-    _SERVICE_NAME     : my-docker-app-staging
     _DOCKER_REGISTRY  : chess-application
     _DOCKER_IMAGENAME : chess-staging
