@@ -53,7 +53,7 @@ steps:
     secretEnv: ['DB_CHESS_USER_PASSWORD']
   
 # Test Docker Image
-  - name: gcr.io/cloud-builders/docker
+  - name: $_SERVICE_IMAGE
     id  : TEST
     args: ['test']
 
