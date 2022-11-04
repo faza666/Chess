@@ -51,6 +51,12 @@ steps:
     dir: 'src'
     timeout: '1600s'
     secretEnv: ['DB_CHESS_USER_PASSWORD']
+  
+
+# Docker Push Image to Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    id  : PUSH
+    args: ['push', '$_SERVICE_IMAGE']
 
 availableSecrets:
   secretManager:
