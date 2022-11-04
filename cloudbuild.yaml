@@ -38,7 +38,7 @@ steps:
   #   dir: 'src'
 
   
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args: 
      - -c
@@ -47,7 +47,7 @@ steps:
     # args: 
     #   - '-c'
     #   - 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy'
-    id: 'DEPLOY'
+    id: 'BUILD_IMAGE'
     dir: 'src'
     timeout: '1600s'
     secretEnv: ['DB_CHESS_USER_PASSWORD']
