@@ -87,3 +87,9 @@ substitutions:
     _SERVICE_REGION   : europe-central2
     _DOCKER_REGISTRY  : chess-application
     _DOCKER_IMAGENAME : chess-staging
+
+
+images:
+- '$_SERVICE_IMAGE:latest'
+- '$_SERVICE_IMAGE:$COMMIT_SHA'
+- '$_SERVICE_IMAGE:$BUILD_ID'
