@@ -76,6 +76,8 @@ steps:
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     dir: src
+    env:
+      - SECRET_PASSWORD
     secretEnv: ['DB_CHESS_USER_PASSWORD']
 
 availableSecrets:
@@ -88,6 +90,7 @@ substitutions:
     _SERVICE_REGION   : europe-central2
     _DOCKER_REGISTRY  : chess-application
     _DOCKER_IMAGENAME : chess-staging
+    SECRET_PASSWORD   : $DB_CHESS_USER_PASSWORD
 
 
 images:
