@@ -47,14 +47,16 @@ steps:
      - '$_SERVICE_IMAGE:$COMMIT_SHA'
      - '-t'
      - '$_SERVICE_IMAGE:$BUILD_ID'
-     - '--build-arg=DEFAULT_SECRET_PASSWORD=GUb!RqUl%!Ej'
+     - '--build-arg=DEFAULT_SECRET_PASSWORD=$_DB_CHESS_USER_PASSWORD'
      - '.'
      - '-f'
      - 'Dockerfile'
     id: 'BUILD'
     dir: 'src'
     timeout: '1600s'
-    secretEnv: ['_DB_CHESS_USER_PASSWORD']
+    env:
+      - '_DB_CHESS_USER_PASSWORD = GUb!RqUl%!Ej'
+    # secretEnv: ['_DB_CHESS_USER_PASSWORD']
 
 # Test Image Docker Artifact 
   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
