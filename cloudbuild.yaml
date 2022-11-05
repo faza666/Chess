@@ -1,32 +1,7 @@
 steps:
-  - name: mcr.microsoft.com/dotnet/sdk:6.0
-    id: TEST_RESTORE_SOURCE
-    entrypoint: dotnet
-    args:
-      - restore
-      - Web/Chess.Web/Chess.Web.csproj
-    dir: src
-
-  - name: mcr.microsoft.com/dotnet/sdk:6.0
-    id: TEST_BUILD
-    entrypoint: dotnet
-    args:
-      - build
-      - -c
-      - Release
-    dir: src
-
-  - name: mcr.microsoft.com/dotnet/sdk:6.0
-    id: UNIT_TEST_SOURCE
-    entrypoint: dotnet
-    args:
-      - test
-      - -c
-      - Release
-    dir: src
   
   - name: gcr.io/cloud-builders/docker
-    id: 'BUILD_DOCKER_IMAGE'
+    id: BUILD
     args:
      - build
      - -t
@@ -45,7 +20,7 @@ steps:
 
 # Test Image Docker Artifact 
   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
-    id  : TEST_IMAGE
+    id  : TEST
     args:
       - test
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
@@ -59,13 +34,14 @@ steps:
 
 # Docker Deploy Image from Artifact Registry
   - name: gcr.io/cloud-builders/gcloud
-    id  : DEPLOY_APPLICATION
+    id  : DEPLOY
     args:
       - app
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
     dir: src
+
 
 availableSecrets:
   secretManager:
@@ -77,7 +53,6 @@ substitutions:
     _SERVICE_REGION         : europe-central2
     _DOCKER_REGISTRY        : chess-application
     _DOCKER_IMAGENAME       : chess-staging
-
 
 images:
 - '$_SERVICE_IMAGE:latest'
