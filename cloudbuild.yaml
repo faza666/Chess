@@ -39,7 +39,8 @@ steps:
 
   
   - name: gcr.io/cloud-builders/docker
-    args: 
+    args:
+     - '-c'
      - 'build'
      - '-t'
      - '$_SERVICE_IMAGE:latest'
@@ -47,7 +48,7 @@ steps:
      - '$_SERVICE_IMAGE:$COMMIT_SHA'
      - '-t'
      - '$_SERVICE_IMAGE:$BUILD_ID'
-     - '--build-arg=SECRET_PASSWORD=${DB_CHESS_USER_PASSWORD}'
+     - '--build-arg=SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD'
      - '.'
      - '-f'
      - 'Dockerfile'
