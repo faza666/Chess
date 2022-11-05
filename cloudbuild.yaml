@@ -75,7 +75,7 @@ steps:
       - app
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
-    secretEnv: ['_DB_CHESS_USER_PASSWORD']
+    # secretEnv: ['_DB_CHESS_USER_PASSWORD']
     dir: 'src'
 
 availableSecrets:
