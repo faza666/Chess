@@ -5,8 +5,10 @@ EXPOSE 8080
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
+ARG SECRET_PASSWORD
+ENV SECRET_PASSWORD ${SECRET_PASSWORD}
 RUN echo $SECRET_PASSWORD
-ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=GUb!RqUl%!Ej"
+ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=${SECRET_PASSWORD}"
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
