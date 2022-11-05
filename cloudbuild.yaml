@@ -1,64 +1,51 @@
 steps:
+  - name: mcr.microsoft.com/dotnet/sdk:6.0
+    id: TEST_RESTORE_SOURCE
+    entrypoint: dotnet
+    args:
+      - restore
+      - Web/Chess.Web/Chess.Web.csproj
+    dir: src
 
-  # - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
-  #   entrypoint: 'dotnet'
-  #   args:
-  #     - 'restore'
-  #     - 'Web/Chess.Web/Chess.Web.csproj'
-  #   id: 'RESTORE'
-  #   dir: 'src'
+  - name: mcr.microsoft.com/dotnet/sdk:6.0
+    id: TEST_BUILD
+    entrypoint: dotnet
+    args:
+      - build
+      - -c
+      - Release
+    dir: src
 
-  # - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
-  #   entrypoint: 'dotnet'
-  #   args:
-  #     - 'build'
-  #     - '-c'
-  #     - 'Release'
-  #   id: 'BUILD'
-  #   dir: 'src'
-
-  # - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
-  #   entrypoint: 'dotnet'
-  #   args:
-  #     - 'test'
-  #     - '-c'
-  #     - 'Release'
-  #   id: 'TEST'
-  #   dir: 'src'
-
-  # - name: 'mcr.microsoft.com/dotnet/sdk:6.0'
-  #   entrypoint: 'dotnet'
-  #   args:
-  #     - 'publish'
-  #     - '-c'
-  #     - 'Release'
-  #     - '-o'
-  #     - 'webapp'
-  #   id: 'PUBLISH'
-  #   dir: 'src'
-
+  - name: mcr.microsoft.com/dotnet/sdk:6.0
+    id: UNIT_TEST_SOURCE
+    entrypoint: dotnet
+    args:
+      - test
+      - -c
+      - Release
+    dir: src
   
   - name: gcr.io/cloud-builders/docker
+    id: 'BUILD_DOCKER_IMAGE'
     args:
-     - 'build'
-     - '-t'
-     - '$_SERVICE_IMAGE:latest'
-     - '-t'
-     - '$_SERVICE_IMAGE:$COMMIT_SHA'
-     - '-t'
-     - '$_SERVICE_IMAGE:$BUILD_ID'
-     - '--build-arg=DEFAULT_SECRET_PASSWORD'
-     - '.'
-     - '-f'
-     - 'Dockerfile'
-    id: 'BUILD'
-    dir: 'src'
-    timeout: '1600s'
+     - build
+     - -t
+     - $_SERVICE_IMAGE:latest
+     - -t
+     - $_SERVICE_IMAGE:$COMMIT_SHA
+     - -t
+     - $_SERVICE_IMAGE:$BUILD_ID
+     - --build-arg=DEFAULT_SECRET_PASSWORD
+     - .
+     - -f
+     - Dockerfile
+    dir: src
+    timeout: 1600s
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
 
 # Test Image Docker Artifact 
   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
-    id  : TEST
+    id  : TEST_IMAGE
     args:
       - test
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
@@ -66,17 +53,19 @@ steps:
 # Docker Push Image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
     id  : PUSH
-    args: ['push', '$_SERVICE_IMAGE:$COMMIT_SHA']
+    args: 
+      - push
+      - $_SERVICE_IMAGE:$COMMIT_SHA
 
 # Docker Deploy Image from Artifact Registry
   - name: gcr.io/cloud-builders/gcloud
-    id  : DEPLOY
+    id  : DEPLOY_APPLICATION
     args:
       - app
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     # secretEnv: ['DEFAULT_SECRET_PASSWORD']
-    dir: 'src'
+    dir: src
 
 availableSecrets:
   secretManager:
@@ -88,7 +77,6 @@ substitutions:
     _SERVICE_REGION         : europe-central2
     _DOCKER_REGISTRY        : chess-application
     _DOCKER_IMAGENAME       : chess-staging
-    # DEFAULT_SECRET_PASSWORD : GUb!RqUl%!Ej
 
 
 images:
