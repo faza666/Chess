@@ -43,7 +43,7 @@ steps:
     args:
       - '-c'
       - |
-          docker build -t $_SERVICE_IMAGE:latest -t $_SERVICE_IMAGE:$COMMIT_SHA -t $_SERVICE_IMAGE:$BUILD_ID -f Dockerfile --build-arg=SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD . 
+          docker build -t $_SERVICE_IMAGE:$BUILD_ID -f Dockerfile --build-arg=DEFAULT_SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD . 
      
     id: 'BUILD'
     dir: 'src'
