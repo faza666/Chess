@@ -68,14 +68,14 @@ steps:
     id  : PUSH
     args: ['push', '$_SERVICE_IMAGE:$COMMIT_SHA']
 
-# # Docker Deploy Image from Artifact Registry
-#   - name: gcr.io/cloud-builders/gcloud
-#     id  : DEPLOY
-#     args:
-#       - app
-#       - deploy
-#       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
-#     # secretEnv: ['_DB_CHESS_USER_PASSWORD']
+# Docker Deploy Image from Artifact Registry
+  - name: gcr.io/cloud-builders/gcloud
+    id  : DEPLOY
+    args:
+      - app
+      - deploy
+      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+    secretEnv: ['_DB_CHESS_USER_PASSWORD']
 
 availableSecrets:
   secretManager:
