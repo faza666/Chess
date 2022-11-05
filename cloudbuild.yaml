@@ -39,19 +39,12 @@ steps:
 
   
   - name: gcr.io/cloud-builders/docker
+  - entrypoint: 'bash'
     args:
-     - '-c'
-     - 'build'
-     - '-t'
-     - '$_SERVICE_IMAGE:latest'
-     - '-t'
-     - '$_SERVICE_IMAGE:$COMMIT_SHA'
-     - '-t'
-     - '$_SERVICE_IMAGE:$BUILD_ID'
-     - '--build-arg=SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD'
-     - '.'
-     - '-f'
-     - 'Dockerfile'
+      - '-c'
+      - |
+          docker build -t $_SERVICE_IMAGE:latest -t $_SERVICE_IMAGE:$COMMIT_SHA -t $_SERVICE_IMAGE:$BUILD_ID -f Dockerfile --build-arg=SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD . 
+     
     id: 'BUILD'
     dir: 'src'
     timeout: '1600s'
