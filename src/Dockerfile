@@ -5,10 +5,7 @@ EXPOSE 8080
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
-ARG DB_CHESS_USER_PASSWORD
-ENV SECRET_PASSWORD=$DB_CHESS_USER_PASSWORD
 RUN echo $SECRET_PASSWORD
-RUN echo $DB_CHESS_USER_PASSWORD
 ENV CONNECTION_STRING="Server=10.109.0.3;Database=Chess;MultipleActiveResultSets=true;UID=chess;PWD=GUb!RqUl%!Ej"
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
@@ -28,4 +25,4 @@ RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Chess.Web.dll"]
+ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", "SECRET_PASSWORD=$DB_CHESS_USER_PASSWORD"]

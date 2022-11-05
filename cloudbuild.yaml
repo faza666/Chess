@@ -74,7 +74,7 @@ steps:
     args:
       - app
       - deploy
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+      # - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     dir: src
 
 availableSecrets:
