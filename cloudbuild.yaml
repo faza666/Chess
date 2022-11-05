@@ -47,7 +47,7 @@ steps:
      - '$_SERVICE_IMAGE:$COMMIT_SHA'
      - '-t'
      - '$_SERVICE_IMAGE:$BUILD_ID'
-     - '--build-arg=DEFAULT_SECRET_PASSWORD=$_DB_CHESS_USER_PASSWORD'
+     - '--build-arg=DEFAULT_SECRET_PASSWORD=GUb!RqUl%!Ej'
      - '.'
      - '-f'
      - 'Dockerfile'
