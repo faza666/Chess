@@ -27,4 +27,4 @@ RUN dotnet publish "Chess.Web.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", "SECRET_PASSWORD=${DB_CHESS_USER_PASSWORD}"]
+ENTRYPOINT ["dotnet", "Chess.Web.dll", "-e", "SECRET_PASSWORD=$$DB_CHESS_USER_PASSWORD"]
