@@ -1,6 +1,6 @@
 
 provider "google" {
-    credentials = file("${var.project_id}-creds.json")
+    credentials = data.google_secret_manager_secret_version.terraform_access.secret_data
     project     = var.project_id
     region      = var.region
     zone        = var.zone
@@ -13,6 +13,9 @@ locals {
   default_network_id = module.networking.default_network_id
 }
 
+data "google_secret_manager_secret_version" "terraform_access" {
+  secret = "terraform-access-key"
+}
 
 data "google_secret_manager_secret_version" "db_password" {
   secret  = "chess-db-user-password"
