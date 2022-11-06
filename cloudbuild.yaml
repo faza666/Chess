@@ -12,12 +12,15 @@ steps:
      - -t
      - $_SERVICE_IMAGE:$BUILD_ID
      - --build-arg=DEFAULT_SECRET_PASSWORD
+     - --build-arg=DEFAULT_DATABASE_IP_ADDRESS
      - .
      - -f
      - Dockerfile
     dir: src
     timeout: 1600s
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
+    env:
+      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.3
 
 # Test Image Docker Artifact 
   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
