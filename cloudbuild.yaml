@@ -36,7 +36,7 @@ steps:
 # Retreave ip address from terraform
   - name: hashicorp/terraform
     id  : GET_IP_ADDRESS
-    entrypoint: bash
+    entrypoint: sh
     args: 
       - -c
       - |
