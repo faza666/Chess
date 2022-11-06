@@ -32,15 +32,33 @@ steps:
       - push
       - $_SERVICE_IMAGE:$COMMIT_SHA
 
-# Docker Deploy Image from Artifact Registry
-  - name: gcr.io/cloud-builders/gcloud
-    id  : DEPLOY
-    args:
-      - app
-      - deploy
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
-    secretEnv: ['DEFAULT_SECRET_PASSWORD']
-    dir: src
+
+  - id: TERRAFORM_INIT
+    name: hashicorp/terraform:1.0.0
+    args: 
+      - init
+      - -upgrade
+    dir: src/terraform/project
+
+  # - id: 'tf plan'
+  #   name: 'hashicorp/terraform:1.0.0'
+  #   entrypoint: sh
+  #   args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm plan  -out=plan.out"]    
+  # - id: 'tf apply'
+  #   name: 'hashicorp/terraform:1.0.0'
+  #   entrypoint: sh
+  #   args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm apply plan.out"]    
+ 
+
+# # Docker Deploy Image from Artifact Registry
+#   - name: gcr.io/cloud-builders/gcloud
+#     id  : DEPLOY
+#     args:
+#       - app
+#       - deploy
+#       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+#     secretEnv: ['DEFAULT_SECRET_PASSWORD']
+#     dir: src
 
 
 availableSecrets:
