@@ -54,6 +54,11 @@ steps:
       - plan.out
     dir: terraform/project
 
+  - id: TERRAFORM_DESTROY
+    name: hashicorp/terraform:1.0.0
+    args: 
+      - destroy
+    dir: terraform/project
 
   # - id: 'tf plan'
   #   name: 'hashicorp/terraform:1.0.0'
