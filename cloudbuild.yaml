@@ -38,21 +38,21 @@ steps:
     args: 
       - init
       - -upgrade
-    dir: src/terraform/project
+    dir: terraform/project
   
   - id: TERRAFORM_PLAN
     name: hashicorp/terraform:1.0.0
     args: 
       - plan
       - -out=plan.out
-    dir: src/terraform/project
+    dir: terraform/project
   
   - id: TERRAFORM_APPLY
     name: hashicorp/terraform:1.0.0
     args: 
       - apply
       - plan.out
-    dir: src/terraform/project
+    dir: terraform/project
 
 
   # - id: 'tf plan'
