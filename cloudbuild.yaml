@@ -43,7 +43,7 @@ steps:
     args: 
       - -c
       - |
-          echo $(terraform output database_ip_address) > db_ip.txt          
+          echo $(terraform output database_ip_address) > /workspace/db_ip.txt          
 
 
 # Docker Deploy Image from Artifact Registry
@@ -54,7 +54,7 @@ steps:
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     env:
-      - DEFAULT_DATABASE_IP_ADDRESS=$(cat db_ip.txt)
+      - DEFAULT_DATABASE_IP_ADDRESS=$(cat /workspace/db_ip.txt)
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
     dir: src
 
