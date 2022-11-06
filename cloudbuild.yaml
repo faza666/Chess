@@ -1,36 +1,36 @@
 steps:
   
-  - name: gcr.io/cloud-builders/docker
-    id: BUILD
-    args:
-     - build
-     - -t
-     - $_SERVICE_IMAGE:latest
-     - -t
-     - $_SERVICE_IMAGE:$COMMIT_SHA
-     - -t
-     - $_SERVICE_IMAGE:$BUILD_ID
-     - --build-arg=DEFAULT_SECRET_PASSWORD
-     - .
-     - -f
-     - Dockerfile
-    dir: src
-    timeout: 1600s
-    secretEnv: ['DEFAULT_SECRET_PASSWORD']
+#   - name: gcr.io/cloud-builders/docker
+#     id: BUILD
+#     args:
+#      - build
+#      - -t
+#      - $_SERVICE_IMAGE:latest
+#      - -t
+#      - $_SERVICE_IMAGE:$COMMIT_SHA
+#      - -t
+#      - $_SERVICE_IMAGE:$BUILD_ID
+#      - --build-arg=DEFAULT_SECRET_PASSWORD
+#      - .
+#      - -f
+#      - Dockerfile
+#     dir: src
+#     timeout: 1600s
+#     secretEnv: ['DEFAULT_SECRET_PASSWORD']
 
-# Test Image Docker Artifact 
-  - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
-    id  : TEST
-    args:
-      - test
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+# # Test Image Docker Artifact 
+#   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
+#     id  : TEST
+#     args:
+#       - test
+#       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
 
-# Docker Push Image to Artifact Registry
-  - name: gcr.io/cloud-builders/docker
-    id  : PUSH
-    args: 
-      - push
-      - $_SERVICE_IMAGE:$COMMIT_SHA
+# # Docker Push Image to Artifact Registry
+#   - name: gcr.io/cloud-builders/docker
+#     id  : PUSH
+#     args: 
+#       - push
+#       - $_SERVICE_IMAGE:$COMMIT_SHA
 
 
   - id: TERRAFORM_INIT
