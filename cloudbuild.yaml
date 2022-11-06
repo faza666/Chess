@@ -40,19 +40,19 @@ steps:
       - -upgrade
     dir: terraform/project
   
-  - id: TERRAFORM_PLAN
-    name: hashicorp/terraform:1.0.0
-    args: 
-      - plan
-      - -out=plan.out
-    dir: terraform/project
+  # - id: TERRAFORM_PLAN
+  #   name: hashicorp/terraform:1.0.0
+  #   args: 
+  #     - plan
+  #     - -out=plan.out
+  #   dir: terraform/project
   
-  - id: TERRAFORM_APPLY
-    name: hashicorp/terraform:1.0.0
-    args: 
-      - apply
-      - plan.out
-    dir: terraform/project
+  # - id: TERRAFORM_APPLY
+  #   name: hashicorp/terraform:1.0.0
+  #   args: 
+  #     - apply
+  #     - plan.out
+  #   dir: terraform/project
 
   - id: TERRAFORM_DESTROY
     name: hashicorp/terraform:1.0.0
