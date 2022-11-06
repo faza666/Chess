@@ -20,7 +20,7 @@ steps:
     timeout: 1600s
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
     env:
-      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.3
+      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.5
 
 # Test Image Docker Artifact 
   - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
@@ -54,7 +54,7 @@ steps:
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     env:
-      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.3
+      - DEFAULT_DATABASE_IP_ADDRESS=$(cat db_ip.txt)
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
     dir: src
 
