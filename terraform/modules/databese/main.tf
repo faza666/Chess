@@ -47,5 +47,5 @@ resource "random_string" "sql_instance_root_password" {
 }
 
 data "google_secret_manager_secret_version" "db_password" {
-    secret = "chess-db-user-password"
+    secret  = "chess-db-user-password"
 }

@@ -14,12 +14,7 @@ locals {
 
 
 data "google_secret_manager_secret_version" "db_password" {
-  secret = "chess-db-user-password"
-}
-
-output "secret_id" {
-  value = data.google_secret_manager_secret_version.db_password.secret_data
-  sensitive = true
+  secret  = "chess-db-user-password"
 }
 
 module "networking" {
