@@ -51,7 +51,7 @@ steps:
       - deploy
       - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
     env:
-      - DATABASE_IP_ADDRESS=10.121.0.3
+      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.3
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
     dir: src
 
