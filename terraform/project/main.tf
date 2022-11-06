@@ -6,13 +6,6 @@ provider "google" {
     zone        = var.zone
 }
 
-terraform {
-  backend "gcs" {
-    bucket = "${var.project_id}-tfstate"
-    prefix = "env/dev"
-  }
-}
-
 
 locals {
   network_connection = module.networking.network_connection
