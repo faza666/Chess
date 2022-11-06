@@ -7,6 +7,7 @@ provider "google" {
 }
 
 
+
 locals {
   network_connection = module.networking.network_connection
   default_network_id = module.networking.default_network_id
