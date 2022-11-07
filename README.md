@@ -51,3 +51,4 @@
 - [x] Email Notifications
 - [ ] Timer Game Mode
 - [ ] Stateless App
+
