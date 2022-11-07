@@ -363,3 +363,6 @@ tfplan
 .terraform*
 *.tfstate
 *.tfstate.*
+
+# Google cloud keys
+terraform/project/*creds.json

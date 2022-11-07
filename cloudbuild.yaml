@@ -1,0 +1,77 @@
+steps:
+  
+  # Build docker image
+  - name: gcr.io/cloud-builders/docker
+    id: BUILD
+    args:
+     - build
+     - -t
+     - $_SERVICE_IMAGE:latest
+     - -t
+     - $_SERVICE_IMAGE:$COMMIT_SHA
+     - -t
+     - $_SERVICE_IMAGE:$BUILD_ID
+     - --build-arg=DEFAULT_SECRET_PASSWORD
+     - --build-arg=DEFAULT_DATABASE_IP_ADDRESS
+     - .
+     - -f
+     - Dockerfile
+    dir: src
+    timeout: 1600s
+    secretEnv: ['DEFAULT_SECRET_PASSWORD']
+    env:
+      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.5
+
+# Test Image Docker Artifact 
+  - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
+    id  : TEST
+    args:
+      - test
+      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+
+# Docker Push Image to Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    id  : PUSH
+    args: 
+      - push
+      - $_SERVICE_IMAGE:$COMMIT_SHA
+
+# Retreave ip address from terraform
+  - name: hashicorp/terraform
+    id  : GET_IP_ADDRESS
+    entrypoint: sh
+    args: 
+      - -c
+      - |
+          echo $(terraform output database_ip_address) > /workspace/db_ip.txt          
+
+
+# Docker Deploy Image from Artifact Registry
+  - name: gcr.io/cloud-builders/gcloud
+    id  : DEPLOY
+    args:
+      - app
+      - deploy
+      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+    env:
+      - DEFAULT_DATABASE_IP_ADDRESS=$(cat /workspace/db_ip.txt)
+    secretEnv: ['DEFAULT_SECRET_PASSWORD']
+    dir: src
+
+# Gettin Secrets from Secret Manager
+availableSecrets:
+  secretManager:
+  - versionName: 'projects/$PROJECT_ID/secrets/chess-db-user-password/versions/3'
+    env: 'DEFAULT_SECRET_PASSWORD'
+
+# Define variables
+substitutions:
+    _SERVICE_IMAGE          : ${_SERVICE_REGION}-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}
+    _SERVICE_REGION         : europe-central2
+    _DOCKER_REGISTRY        : chess-application
+    _DOCKER_IMAGENAME       : chess-staging
+
+images:
+- '$_SERVICE_IMAGE:latest'
+- '$_SERVICE_IMAGE:$COMMIT_SHA'
+- '$_SERVICE_IMAGE:$BUILD_ID'
