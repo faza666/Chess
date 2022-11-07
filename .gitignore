@@ -365,4 +365,4 @@ tfplan
 *.tfstate.*
 
 # Google cloud keys
-terraform/project/*creds.json
+terraform/project/*/*creds.json
