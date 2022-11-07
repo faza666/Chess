@@ -17,11 +17,11 @@ data "google_secret_manager_secret_version" "db_password" {
 }
 
 module "networking" {
-  source = "../modules/networking"
+  source = "../../modules/networking"
 }
 
 module "database" {
-  source = "../modules/databese"
+  source = "../../modules/databese"
   network_connection = local.network_connection
   default_network_id = local.default_network_id
   project_id = var.project_id
