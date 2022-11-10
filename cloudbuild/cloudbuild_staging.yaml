@@ -36,16 +36,6 @@ steps:
       - push
       - $_SERVICE_IMAGE:$COMMIT_SHA
 
-# Retreave ip address from terraform
-  - name: hashicorp/terraform
-    id  : GET_IP_ADDRESS
-    entrypoint: sh
-    args: 
-      - -c
-      - |
-          echo $(terraform output database_ip_address) > /workspace/db_ip.txt          
-
-
 # Docker Deploy Image from Artifact Registry
   - name: gcr.io/cloud-builders/gcloud
     id  : DEPLOY
