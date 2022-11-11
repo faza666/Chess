@@ -56,7 +56,7 @@ availableSecrets:
 
 # Define variables
 substitutions:
-    _SERVICE_IMAGE          : ${_SERVICE_REGION}-docker.pkg.dev/$PROJECT_ID/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}
+    _SERVICE_IMAGE          : ${_SERVICE_REGION}-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}
     _SERVICE_REGION         : us-east1
     _DOCKER_REGISTRY        : chess-application
     _DOCKER_IMAGENAME       : chess-production
