@@ -7,7 +7,6 @@ steps:
       - app
       - deploy
       - --image-url=$_SERVICE_IMAGE:latest
-      - --verbosity=debug
     env:
       - DEFAULT_DATABASE_IP_ADDRESS=172.22.0.5
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
