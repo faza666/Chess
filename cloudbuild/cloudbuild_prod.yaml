@@ -24,6 +24,3 @@ substitutions:
     _SERVICE_REGION         : europe-central2
     _DOCKER_REGISTRY        : chess-application
     _DOCKER_IMAGENAME       : chess-staging
-
-images:
-- '$_SERVICE_IMAGE:latest'
