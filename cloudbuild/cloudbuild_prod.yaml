@@ -1,48 +1,12 @@
 steps:
   
-  # Build docker image
-  - name: gcr.io/cloud-builders/docker
-    id: BUILD
-    args:
-     - build
-     - -t
-     - $_SERVICE_IMAGE:latest
-     - -t
-     - $_SERVICE_IMAGE:$COMMIT_SHA
-     - -t
-     - $_SERVICE_IMAGE:$BUILD_ID
-     - --build-arg=DEFAULT_SECRET_PASSWORD
-     - --build-arg=DEFAULT_DATABASE_IP_ADDRESS
-     - .
-     - -f
-     - Dockerfile
-    dir: src
-    timeout: 1600s
-    secretEnv: ['DEFAULT_SECRET_PASSWORD']
-    env:
-      - DEFAULT_DATABASE_IP_ADDRESS=10.121.0.5
-
-# Test Image Docker Artifact 
-  - name: mcr.microsoft.com/dotnet/sdk:6.0-alpine
-    id  : TEST
-    args:
-      - test
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
-
-# Docker Push Image to Artifact Registry
-  - name: gcr.io/cloud-builders/docker
-    id  : PUSH
-    args: 
-      - push
-      - $_SERVICE_IMAGE:$COMMIT_SHA
-
 # Docker Deploy Image from Artifact Registry
   - name: gcr.io/cloud-builders/gcloud
     id  : DEPLOY
     args:
       - app
       - deploy
-      - --image-url=$_SERVICE_IMAGE:$COMMIT_SHA
+      - --image-url=$_SERVICE_IMAGE:latest
     env:
       - DEFAULT_DATABASE_IP_ADDRESS=172.22.0.5
     secretEnv: ['DEFAULT_SECRET_PASSWORD']
@@ -56,13 +20,10 @@ availableSecrets:
 
 # Define variables
 substitutions:
-    _SERVICE_IMAGE          : ${_SERVICE_REGION}-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}
-    _SERVICE_REGION         : us-east1
+    _SERVICE_IMAGE          : ${_SERVICE_REGION}-docker.pkg.dev/chess-test-webapp-5/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}
+    _SERVICE_REGION         : europe-central2
     _DOCKER_REGISTRY        : chess-application
     _DOCKER_IMAGENAME       : chess-staging
 
 images:
 - '$_SERVICE_IMAGE:latest'
-- '$_SERVICE_IMAGE:$COMMIT_SHA'
-- '$_SERVICE_IMAGE:$BUILD_ID'
-
